@@ -1,0 +1,18 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 6,
+    "fields": {
+      "category_name": "Фрукты",
+      "description": "Свежие"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 7,
+    "fields": {
+      "category_name": "Овощи",
+      "description": "Сезонные"
+    }
+  }
+]
