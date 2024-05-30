@@ -1,0 +1,57 @@
+[
+  {
+    "model": "catalog.product",
+    "pk": 7,
+    "fields": {
+      "product_name": "Яблоки",
+      "description": "Красные",
+      "image_preview": "",
+      "category": 6,
+      "price": 135,
+      "created_at": "2024-05-29",
+      "updated_ad": "2024-05-29"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 8,
+    "fields": {
+      "product_name": "Капуста",
+      "description": "Белокочанная",
+      "image_preview": "",
+      "category": 7,
+      "price": 75,
+      "created_at": "2024-05-29",
+      "updated_ad": "2024-05-29"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 9,
+    "fields": {
+      "product_name": "Щетка",
+      "description": "",
+      "image_preview": "",
+      "category": null,
+      "price": 95,
+      "created_at": "2024-05-29",
+      "updated_ad": "2024-05-29"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 6,
+    "fields": {
+      "category_name": "Фрукты",
+      "description": "Свежие"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 7,
+    "fields": {
+      "category_name": "Овощи",
+      "description": "Сезонные"
+    }
+  }
+]
