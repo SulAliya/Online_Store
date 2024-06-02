@@ -37,5 +37,21 @@
       "created_at": "2024-05-29",
       "updated_ad": "2024-05-29"
     }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "category_name": "Фрукты",
+      "description": "Свежие"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "category_name": "Овощи",
+      "description": "Сезонные"
+    }
   }
 ]

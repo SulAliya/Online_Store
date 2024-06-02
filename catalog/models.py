@@ -26,6 +26,7 @@ class Product(models.Model):
             "updated_ad",
         )
 
+
 class Category(models.Model):
     category_name = models.CharField(max_length=100, verbose_name='Наименование')
     description = models.TextField(verbose_name='Описание')
@@ -37,6 +38,9 @@ class Category(models.Model):
     def truncate_table_restart_id(cls):
         with connection.cursor() as cursor:
             cursor.execute(f'TRUNCATE TABLE {cls._meta.db_table} RESTART IDENTITY CASCADE')
+            #
+            # cursor.execute(f"ALTER SEQUENCE catalog_category_id_seq RESTART WITH 1")
+            # cursor.execute(f"ALTER SEQUENCE catalog_product_id_seq RESTART WITH 1")
 
     class Meta:
         verbose_name = 'Категория'
