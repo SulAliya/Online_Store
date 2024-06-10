@@ -13,6 +13,12 @@ class Product(models.Model):
     created_at = models.DateField(**NULLABLE, verbose_name='Дата создания (записи в БД)')
     updated_ad = models.DateField(**NULLABLE, verbose_name='Дата последнего изменения (записи в БД)')
 
+    view_counter = models.PositiveIntegerField(
+        verbose_name='Количество просмотров',
+        help_text='Количество просмотров данного товара',
+        default=0
+    )
+
     def __str__(self):
         return f'{self.product_name} {self.price} {self.category}'
 
