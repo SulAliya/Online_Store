@@ -62,6 +62,7 @@
                             <textarea type="text" name="message" class="form-control" id="message" placeholder="Контактный телефон" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-lg btn-block btn-outline-primary">Отправить</button>
+                          <a class="btn btn-primary" href="{% url 'catalog:product_catalog'%}" role="button">Назад</a>
                     </form>
                 </div>
             </div>
@@ -72,7 +73,7 @@
         <div class="row">
             <div class="col-12 col-md">
                 SkyStore
-                <small class="d-block mb-3 text-muted">&copy; 2023</small>
+                <small class="d-block mb-3 text-muted">&copy; {% now 'Y' %}</small>
             </div>
             <div class="col-6 col-md">
                 <h5>Категории</h5>
