@@ -1,9 +1,5 @@
-from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy, reverse
-from django.utils.translation.trans_real import catalog
-from django.views import View
 from django.views.generic import ListView, DetailView, TemplateView, CreateView, UpdateView, DeleteView
-
 from catalog.models import Product
 
 
@@ -25,23 +21,21 @@ class ProductDetailView(DetailView):
         return self.object
 
 
-class ProductCreateView(CreateView):
-    model = Product
-    fields = ('product_name', 'description', 'image_preview', 'category', 'price', 'created_at')
-    success_url = reverse_lazy('catalog:product_catalog')
-
-
-class ProductUpdateView(UpdateView):
-    model = Product
-    fields = ('product_name', 'description', 'image_preview', 'category', 'price', 'created_at')
-    success_url = reverse_lazy('catalog:product_catalog')
-
-    def get_success_url(self):
-        return reverse('catalog:product_detail', kwargs={'pk': self.object.pk})
-
-
-class ProductDeleteView(DeleteView):
-    model = Product
-    success_url = reverse_lazy('catalog:product_catalog')
-
-
+# class ProductCreateView(CreateView):
+#     model = Product
+#     fields = ('product_name', 'description', 'image_preview', 'category', 'price', 'created_at')
+#     success_url = reverse_lazy('catalog:product_catalog')
+#
+#
+# class ProductUpdateView(UpdateView):
+#     model = Product
+#     fields = ('product_name', 'description', 'image_preview', 'category', 'price', 'created_at')
+#     success_url = reverse_lazy('catalog:product_catalog')
+#
+#     def get_success_url(self):
+#         return reverse('catalog:product_detail', kwargs={'pk': self.object.pk})
+#
+#
+# class ProductDeleteView(DeleteView):
+#     model = Product
+#     success_url = reverse_lazy('catalog:product_catalog')
