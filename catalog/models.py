@@ -53,3 +53,16 @@ class Category(models.Model):
         verbose_name_plural = 'Категории'
 
 
+class Version(models.Model):
+    product = models.ForeignKey(Product, related_name='product_versions', on_delete=models.SET_NULL, null=True,
+                                blank=True, verbose_name='продукт')
+    version_number = models.IntegerField(default=0, verbose_name='номер версии')
+    version_name = models.CharField(max_length=150, verbose_name='название версии')
+    current_version = models.BooleanField(default=True, verbose_name='признак текущей версии')
+
+    def __str__(self):
+        return f'{self.current_version}'
+
+    class Meta:
+        verbose_name = 'Версия'
+        verbose_name_plural = 'Версии'
