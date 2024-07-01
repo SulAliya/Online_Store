@@ -4,5 +4,10 @@
         <li><a href="{% url 'catalog:base'%}" class="text-white">Главная</a></li>
         <li><a href="{% url 'blog:list'%}" class="text-white">Блог</a></li>
         <li><a href="{% url 'catalog:contacts'%}" class="text-white">Контакты</a></li>
+{% if user.is.authenticated %}
+        <a class="p-2 btn btn-outline-primary" href="{% url 'users:logout' %}">Выход</a>
+        {% else %}
+        <a class="p-2 btn btn-outline-primary" href="{% url 'users:login' %}">Вход</a>
+        {% endif %}
     </ul>
 </div>
