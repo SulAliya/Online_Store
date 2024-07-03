@@ -21,8 +21,10 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
                             <a class="btn btn-primary" href="{% url 'catalog:product_detail' prod.pk %}" role="button">Посмотреть</a>
+                            {% if user.is_active %}
                             <a class="btn btn-warning" href="{% url 'catalog:product_update' prod.pk %}" role="button">Редактировать</a>
                             <a class="btn btn-danger" href="{% url 'catalog:product_delete' prod.pk %}" role="button">Удалить</a>
+                             {% endif %}
                         </div>
                     </div>
                 </div>
