@@ -1,7 +1,9 @@
+import random
 import secrets
+import string
 
 from django.core.mail import send_mail
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, UpdateView
 
@@ -48,3 +50,30 @@ class ProfileView(UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user
+
+
+def reset_password(request):
+    context = {
+            'success_message': 'Пароль успешно сброшен. Новый пароль был отправлен на адрес Вашей электронной почты.',
+        }
+
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        user = get_object_or_404(User, email=email)
+        characters = string.ascii_letters + string.digits
+        characters_list = list(characters)
+        random.shuffle(characters_list)
+        password = ''.join(characters_list[:10])
+        user.set_password(password)
+        user.save()
+
+        send_mail(
+            subject='Восстановление пароля',
+            message=f'Ваш пароль для доступа на наш сайт изменен:\n {password}',
+            from_email=EMAIL_HOST_USER,
+            recipient_list=[user.email],
+            )
+
+        return render(request, 'users/reset_password.html', context)
+
+    return render(request, 'users/reset_password.html')
