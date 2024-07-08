@@ -21,6 +21,7 @@ class Product(models.Model):
         default=0
     )
     owner = models.ForeignKey(User, verbose_name='Владелец', help_text='Укажите владельца продукта', blank=True, null=True, on_delete=models.SET_NULL)
+    current_version = models.BooleanField(default=True, verbose_name='признак текущей версии')
 
     def __str__(self):
         return f'{self.product_name} {self.price} {self.category}'
@@ -34,6 +35,11 @@ class Product(models.Model):
             "created_at",
             "updated_ad",
         )
+        permissions = [
+            ("can_edit", "Can edit category"),
+            ("can_edit_description", "Can edit description"),
+            ("change_current_version", "Can change current_version")
+        ]
 
 
 class Category(models.Model):
