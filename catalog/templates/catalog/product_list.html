@@ -23,8 +23,9 @@
                             <a class="btn btn-primary" href="{% url 'catalog:product_detail' prod.pk %}" role="button">Посмотреть</a>
                             {% if perms.catalog.can_edit_category and perms.catalog.can_edit_description and perms.catalog.can_edit_is_published or user == prod.owner %}
                             <a class="btn btn-warning" href="{% url 'catalog:product_update' prod.pk %}" role="button">Редактировать</a>
+                            {% endif %}
                             <a class="btn btn-danger" href="{% url 'catalog:product_delete' prod.pk %}" role="button">Удалить</a>
-                             {% endif %}
+
                         </div>
                     </div>
                 </div>
