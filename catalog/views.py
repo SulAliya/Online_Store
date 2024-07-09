@@ -24,22 +24,6 @@ class ProductDetailView(DetailView):
         self.object.view_counter += 1
         self.object.save()
         return self.object
-    # def get_context_data(self, **kwargs):
-    #     context_data = super().get_context_data(**kwargs)
-    #     VersionFormset = inlineformset_factory(Product, Version, form=VersionForm, extra=1)
-    #     if self.request.method == 'POST':
-    #         context_data['formset'] = VersionFormset(self.request.POST)
-    #     else:
-    #         context_data['formset'] = VersionFormset()
-    #     return context_data
-    #
-    # def form_valid(self, form):
-    #     formset = self.get_context_data()['formset']
-    #     self.object = form.save()
-    #     if formset.is_valid():
-    #         formset.instance = self.object
-    #         formset.save()
-    #     return super().form_valid(form)
 
 
 class ProductCreateView(CreateView, LoginRequiredMixin):
@@ -84,8 +68,8 @@ class ProductUpdateView(UpdateView, LoginRequiredMixin):
         user = self.request.user
         if user == self.object.owner:
             return ProductForm
-        if (user.has_perm('product.can_edit_category') and user.has_perm('product.can_edit_description')
-                and user.has_perm('change_current_version')):
+        if (user.has_perm('catalog.can_edit_category') and user.has_perm('catalog.can_edit_description')
+                and user.has_perm('catalog.can_edit_is_published')):
             return ProductModeratorForm
         raise PermissionDenied
 
