@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.forms import inlineformset_factory
+from django.http import HttpResponseForbidden
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, TemplateView, CreateView, UpdateView, DeleteView
 
@@ -16,14 +17,16 @@ class ContactsTemplateView(TemplateView):
     template_name = "catalog/contacts.html"
 
 
-class ProductDetailView(DetailView):
+class ProductDetailView(DetailView, LoginRequiredMixin):
     model = Product
 
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
-        self.object.view_counter += 1
-        self.object.save()
-        return self.object
+        if self.request.user == self.object.owner:
+            self.object.view_counter += 1
+            self.object.save()
+            return self.object
+        raise PermissionDenied()
 
 
 class ProductCreateView(CreateView, LoginRequiredMixin):
@@ -77,3 +80,11 @@ class ProductUpdateView(UpdateView, LoginRequiredMixin):
 class ProductDeleteView(DeleteView):
     model = Product
     success_url = reverse_lazy('catalog:product_catalog')
+
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        if self.request.user == self.object.owner:
+            self.object.view_counter += 1
+            self.object.save()
+            return self.object
+        raise PermissionDenied()
