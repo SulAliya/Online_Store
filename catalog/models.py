@@ -36,7 +36,7 @@ class Product(models.Model):
             "updated_ad",
         )
         permissions = [
-            ("can_edit", "Can edit category"),
+            ("can_edit_category", "Can edit category"),
             ("can_edit_description", "Can edit description"),
             ('can_edit_is_published', 'Can edit is_published'),
         ]
